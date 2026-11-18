@@ -49,19 +49,14 @@ h2 { font-size: 1.27rem; line-height: 1.35; }
 .dedication { margin-top: 17px; color: var(--muted); }
 .family { color: var(--gold); margin-top: 4px; }
 .portrait { display: grid; place-items: center; min-width: 0; }
-.portrait img { display: block; width: 100%; max-width: 285px; aspect-ratio: 4/5; object-fit: cover; object-position: center 25%; border: 1px solid #78613d; border-radius: 12px; }
-.record {
-  width: min(100%, 278px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 1px solid #8b6b413f;
-  background: repeating-radial-gradient(circle, transparent 0 5px, #c49a5d22 6px 7px),
-    conic-gradient(from 25deg, #231c13, #63492b, #181613, #322415, #191612, #63492b, #231c13);
-  box-shadow: 0 16px 45px #0503019c, 0 0 45px #daaa5a13;
+.portrait img {
+  display: block;
+  width: 100%;
+  max-width: 285px;
+  height: auto;
+  border: 1px solid #b79861;
+  border-radius: 12px;
 }
-.record-center { width: 32%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #a17a48; background: radial-gradient(circle, #171510 0 6%, #c29c63 7% 11%, #46331e 12% 59%, #6d512e 60% 62%, #49331e 63%); }
 .collection { display: grid; grid-template-columns: 1fr .84fr; grid-template-areas: "player tracks" "lyrics tracks"; gap: 18px; margin-top: 22px; align-items: start; }
 .panel { min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: clamp(15px, 3vw, 25px); }
 .player { grid-area: player; }
@@ -117,7 +112,6 @@ dialog input { display: block; width: 100%; margin-block: 14px; border: 1px soli
   .masthead { min-height: 65px; }
   .hero { grid-template-columns: 1fr; min-height: 0; }
   .portrait { grid-row: 1; justify-items: start; }
-  .record { width: 100px; }
   .portrait img { width: min(58%, 190px); }
   .collection { grid-template-columns: 1fr; grid-template-areas: "player" "tracks" "lyrics"; gap: 14px; }
 }
