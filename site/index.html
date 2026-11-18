@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#11100e">
+  <title>משה הלל | הקול שנשאר</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="player.js" defer></script>
+</head>
+<body>
+  <div class="frame">
+    <header class="masthead">
+      <span class="brand">InMusic Studio</span>
+      <button id="share" type="button" class="quiet">שיתוף קישור</button>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">לזכרו של הצנחן המזמר</p>
+          <h1 id="page-title">משה הלל <span aria-hidden="true" class="title-separator">|</span><span>הקול שנשאר</span></h1>
+          <p class="subtitle">אוסף האקפלות המשפחתי של משה הלל ז״ל — הצנחן המזמר</p>
+          <p class="dedication">יש קולות שלא נעלמים. הם ממשיכים ללוות אותנו בכל רגע.</p>
+          <p class="family">באהבה לחי ולכל המשפחה.</p>
+        </div>
+        <div class="portrait" id="portrait" aria-hidden="true">
+          <div class="record"><div class="record-center"></div></div>
+        </div>
+      </section>
+      <div class="collection">
+        <section class="panel player" aria-labelledby="player-title">
+          <p class="eyebrow">נגן האוסף</p>
+          <h2 id="player-title">בחרו שיר להאזנה</h2>
+          <p id="artist" class="muted">משה הלל</p>
+          <audio id="audio" preload="none"></audio>
+          <div class="timeline" dir="ltr">
+            <input id="seek" type="range" min="0" max="0" value="0" step="0.1" aria-label="מיקום בהקלטה" disabled>
+            <div class="times"><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
+          </div>
+          <div class="transport" dir="ltr">
+            <button id="previous" type="button" aria-label="השיר הקודם" title="השיר הקודם" disabled>⏮</button>
+            <button id="play" class="play" type="button" aria-label="ניגון" title="ניגון" disabled>
+              <span id="play-glyph" aria-hidden="true">▶</span>
+            </button>
+            <button id="next" type="button" aria-label="השיר הבא" title="השיר הבא" disabled>⏭</button>
+          </div>
+          <div class="options">
+            <label><input id="continuous" type="checkbox" checked> ניגון רצוף</label>
+            <button id="repeat" type="button" class="quiet" aria-label="חזרה כבויה. לחיצה למעבר למצב הבא">חזרה כבויה</button>
+            <button id="jump-lyrics" class="quiet" type="button">למילות השיר</button>
+          </div>
+          <p id="player-status" class="status" role="status"></p>
+        </section>
+        <section class="panel tracklist" aria-labelledby="track-heading">
+          <div class="panel-heading"><h2 id="track-heading">השירים באוסף</h2><span id="track-count" class="muted"></span></div>
+          <ol id="tracks"></ol>
+        </section>
+        <section class="panel lyric-panel" aria-labelledby="lyric-title">
+          <div class="panel-heading lyric-heading">
+            <h2 id="lyric-title">מילות השיר</h2>
+            <button id="toggle-lyrics" class="quiet" type="button" aria-expanded="true" aria-controls="lyric-content">הסתרה</button>
+          </div>
+          <div id="lyric-content">
+            <div class="credits" id="credits"></div>
+            <div class="lyric-tools">
+              <button id="smaller" class="quiet" type="button" aria-label="הקטנת כתב">א−</button>
+              <button id="larger" class="quiet" type="button" aria-label="הגדלת כתב">א+</button>
+            </div>
+            <div id="lyrics" class="lyrics" tabindex="0" role="region" aria-label="מילות השיר">
+              <p class="muted">בחרו שיר כדי לקרוא את מילותיו.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <noscript><p>כדי לפתוח את נגן האוסף יש לאפשר JavaScript בדפדפן.</p></noscript>
+    </main>
+    <footer>
+      <span>InMusic Studio</span>
+      <p>ההאזנה משתמשת בחיבור לאינטרנט ובמטמון זמני של הדפדפן.</p>
+    </footer>
+    <dialog id="share-dialog" aria-labelledby="share-title">
+      <form method="dialog">
+        <h2 id="share-title">שיתוף קישור משפחתי</h2>
+        <p>פתיחת הקישור כפופה להרשאת הגישה לאוסף.</p>
+        <input id="share-url" type="url" readonly aria-label="קישור לשיתוף" dir="ltr">
+        <button type="submit" class="quiet">סגירה</button>
+      </form>
+    </dialog>
+  </div>
+</body>
+</html>

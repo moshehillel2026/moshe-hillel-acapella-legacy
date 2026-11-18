@@ -1,0 +1,9 @@
+/draft/
+/draft-input/
+/.deployment-assets/
+/.wrangler/
+/hosting/.wrangler/
+/hosting/.dev.vars
+*.mp3
+*.odt
+*.zip

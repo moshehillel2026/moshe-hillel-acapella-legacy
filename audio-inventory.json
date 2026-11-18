@@ -1,0 +1,79 @@
+[
+  {
+    "source": "יש עיר MP3(1).mp3",
+    "path": "media/yesh-ir.mp3",
+    "duration": 209.476,
+    "bytes": 6704108,
+    "format": "mp3",
+    "bitrate": 256000,
+    "sampleRate": 44100,
+    "channels": 2,
+    "sha256": "b516277da5c83cc9c3d2f4b9cd2a71b006115947f9bb8d1f24683cb31a3325f3"
+  },
+  {
+    "source": "הנער עם הבנג׳ו MP3(1).mp3",
+    "path": "media/banjo.mp3",
+    "duration": 176.849,
+    "bytes": 5660046,
+    "format": "mp3",
+    "bitrate": 256000,
+    "sampleRate": 44100,
+    "channels": 2,
+    "sha256": "4bf416beb8e6a3d4e77a6e561c130522df0c754aea064b2be09588d50c5a4f9f"
+  },
+  {
+    "source": "חיים גנובים MP3(1).mp3",
+    "path": "media/stolen-lives.mp3",
+    "duration": 165.721,
+    "bytes": 5303945,
+    "format": "mp3",
+    "bitrate": 256000,
+    "sampleRate": 44100,
+    "channels": 2,
+    "sha256": "8e05be2af46bba134afd24266ee1f4f6de85b3c84a6f8b4c9be3f9b0c4430a53"
+  },
+  {
+    "source": "יעקב התמים – אל תירא ישראל MP3(1).mp3",
+    "path": "media/yaakov.mp3",
+    "duration": 174.968,
+    "bytes": 3499929,
+    "format": "mp3",
+    "bitrate": 160000,
+    "sampleRate": 22050,
+    "channels": 1,
+    "sha256": "51948f53a4b1789a914161d60e61531cc574b639d4a1c8824578dc0b9c6399dd"
+  },
+  {
+    "source": "שיר שבת MP3.mp3",
+    "path": "media/shabbat.mp3",
+    "duration": 237.168,
+    "bytes": 7456941,
+    "format": "mp3",
+    "bitrate": 251531,
+    "sampleRate": 48000,
+    "channels": 2,
+    "sha256": "c0fb2ffe9084ea89dbfb70231ad3663c1e05d0770ae6251bfa14c2e4d1f9d4df"
+  },
+  {
+    "source": "חג לי חג לי MP3.mp3",
+    "path": "media/chag-li.mp3",
+    "duration": 174.048,
+    "bytes": 4189629,
+    "format": "mp3",
+    "bitrate": 192571,
+    "sampleRate": 48000,
+    "channels": 2,
+    "sha256": "08ad329061ea1533856cc5b6c932d746a6a9fe04273b42faaba2b14a05b50b36"
+  },
+  {
+    "source": "מטדור MP3(1).mp3",
+    "path": "media/matador.mp3",
+    "duration": 111.408,
+    "bytes": 3468429,
+    "format": "mp3",
+    "bitrate": 249058,
+    "sampleRate": 48000,
+    "channels": 2,
+    "sha256": "fea91fbbbecbebed4b6c346919e676b16e2a22c973228df396f35ec75ff38cb3"
+  }
+]

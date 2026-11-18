@@ -1,0 +1,141 @@
+{
+  "settings": {
+    "continuous": true
+  },
+  "portrait": null,
+  "songs": [
+    {
+      "id": "yesh-ir",
+      "order": 1,
+      "title": "יש עיר",
+      "performer": "משה הלל",
+      "lyricist": "יהודה אופן",
+      "composer": "אלי קניאל",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 209.476,
+      "cover": null,
+      "lyrics": {
+        "source": "יש עיר(2).odt",
+        "status": "matched-to-document",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "banjo",
+      "order": 2,
+      "title": "הנער עם הבנג׳ו",
+      "performer": "משה הלל",
+      "lyricist": "תרצה אתר",
+      "composer": "עמי שביט",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 176.849,
+      "cover": null,
+      "lyrics": {
+        "source": "הנער עם הבנגו(2).odt",
+        "status": "matched-to-document",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "stolen-lives",
+      "order": 3,
+      "title": "חיים גנובים",
+      "performer": "משה הלל",
+      "lyricist": "אילן גולדהירש",
+      "composer": "משה הלל",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 165.721,
+      "cover": null,
+      "lyrics": {
+        "source": "חיים גנובים(2).odt",
+        "status": "matched-to-document",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "yaakov",
+      "order": 4,
+      "title": "יעקב התמים – אל תירא ישראל",
+      "performer": "משה הלל",
+      "lyricist": "אביהו מדינה",
+      "composer": "אביהו מדינה",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 174.968,
+      "cover": null,
+      "lyrics": {
+        "source": "יעקב התמים(2).odt",
+        "status": "matched-to-document",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "shabbat",
+      "order": 5,
+      "title": "שיר שבת",
+      "performer": "משה הלל",
+      "lyricist": "בועז שרעבי",
+      "composer": "בועז שרעבי",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 237.168,
+      "cover": null,
+      "lyrics": {
+        "source": "שיר שבת(2).odt",
+        "status": "partial-review",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "chag-li",
+      "order": 6,
+      "title": "חג לי",
+      "performer": "משה הלל",
+      "lyricist": "אביהו מדינה",
+      "composer": "אביהו מדינה",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 174.048,
+      "cover": null,
+      "lyrics": {
+        "source": "חג לי(2).odt",
+        "status": "matched-to-document",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "matador",
+      "order": 7,
+      "title": "מטאדור",
+      "performer": "משה הלל",
+      "lyricist": "אורי ברזילי",
+      "composer": "יהודה בדיחי",
+      "creditsStatus": "transcribed-from-family-document",
+      "audio": null,
+      "duration": 111.408,
+      "cover": null,
+      "lyrics": {
+        "source": "מטאדור(3).odt",
+        "status": "matched-to-document",
+        "note": "מילות השיר זמינות בטיוטה המקומית של המשפחה.",
+        "sections": [],
+        "cues": []
+      }
+    }
+  ]
+}
