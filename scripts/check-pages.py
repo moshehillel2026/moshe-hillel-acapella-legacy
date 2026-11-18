@@ -31,7 +31,8 @@ def check(site, inventory_file):
         if path != f"media/{song_id}.mp3" or path in expected or path not in by_path:
             raise ValueError(f"Invalid or missing audio path in catalog: {song_id}")
         expected.add(path)
-        if not song["lyrics"]["sections"]:
+        lyrics = song["lyrics"]
+        if not lyrics["sections"] and lyrics["status"] != "pending":
             raise ValueError(f"Missing lyrics in release catalog: {song_id}")
         recording = site / path
         with recording.open("rb") as file:

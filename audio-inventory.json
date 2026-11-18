@@ -75,5 +75,16 @@
     "sampleRate": 48000,
     "channels": 2,
     "sha256": "fea91fbbbecbebed4b6c346919e676b16e2a22c973228df396f35ec75ff38cb3"
+  },
+  {
+    "source": "הופעה ריח מנטה משה הלל אקפלה MP3.mp3",
+    "path": "media/reach-menta.mp3",
+    "duration": 682.728,
+    "bytes": 21151773,
+    "format": "mp3",
+    "bitrate": 247850,
+    "sampleRate": 48000,
+    "channels": 2,
+    "sha256": "9d7079a02e8e7b3566b1e1801495ff4d345ded7cdf1a2c5feb67b7672738d011"
   }
 ]

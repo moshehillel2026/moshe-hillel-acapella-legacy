@@ -544,6 +544,25 @@
         ],
         "cues": []
       }
+    },
+    {
+      "id": "reach-menta",
+      "order": 8,
+      "title": "ריח מנטה – הופעה חיה",
+      "performer": "משה הלל",
+      "lyricist": null,
+      "composer": null,
+      "creditsStatus": "pending",
+      "audio": "media/reach-menta.mp3",
+      "duration": 682.728,
+      "cover": null,
+      "lyrics": {
+        "source": null,
+        "status": "pending",
+        "note": "אקפלה מתוך הופעה בתוכנית ״ריח מנטה״. כותרת השיר ופרטי היוצרים ממתינים לאימות.",
+        "sections": [],
+        "cues": []
+      }
     }
   ]
 }
