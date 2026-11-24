@@ -88,6 +88,17 @@
     "sha256": "fea91fbbbecbebed4b6c346919e676b16e2a22c973228df396f35ec75ff38cb3"
   },
   {
+    "source": "ani_rak_zamar_v2.mp3",
+    "path": "media/ani-rak-zamar.mp3",
+    "duration": 126.12,
+    "bytes": 5045804,
+    "format": "mp3",
+    "bitrate": 320063,
+    "sampleRate": 48000,
+    "channels": 2,
+    "sha256": "e514925cad7d4fbb7a2e04d5e7f6c9517c9583e402658bf0dac1295c2bbd0176"
+  },
+  {
     "source": "הופעה ריח מנטה משה הלל אקפלה MP3.mp3",
     "path": "media/reach-menta.mp3",
     "duration": 682.728,

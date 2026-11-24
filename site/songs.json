@@ -565,8 +565,27 @@
       }
     },
     {
-      "id": "reach-menta",
+      "id": "ani-rak-zamar",
       "order": 9,
+      "title": "אני רק זמר",
+      "performer": "משה הלל",
+      "lyricist": null,
+      "composer": null,
+      "creditsStatus": "pending",
+      "audio": "media/ani-rak-zamar.mp3",
+      "duration": 126.12,
+      "cover": null,
+      "lyrics": {
+        "source": null,
+        "status": "pending",
+        "note": "מילות השיר ופרטי היוצרים ממתינים להשלמה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "reach-menta",
+      "order": 10,
       "title": "ריח מנטה – הופעה חיה",
       "performer": "משה הלל",
       "lyricist": null,
