@@ -1,0 +1,63 @@
+name: Verify track nine on GitHub Pages
+on: [push]
+permissions:
+  contents: read
+jobs:
+  player:
+    if: github.ref == 'refs/heads/qa/tenth-recording-playback'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: pip install playwright
+      - shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import time
+          from urllib.error import URLError
+          from urllib.parse import urljoin
+          from urllib.request import urlopen
+          from playwright.sync_api import sync_playwright
+
+          base = 'https://moshehillel2026.github.io/moshe-hillel-acapella-legacy/'
+          songs = json.load(open('site/songs.json'))['songs']
+          new_track = songs[8]
+          with sync_playwright() as pw:
+              browser = pw.chromium.launch(executable_path='/usr/bin/google-chrome')
+              page = browser.new_page(**pw.devices['Pixel 7'])
+              for _ in range(30):
+                  page.goto(base+'#'+new_track['id'])
+                  try:
+                      page.wait_for_function("document.querySelector('#track-count')?.textContent.includes('10')", timeout=5000)
+                      break
+                  except Exception:
+                      time.sleep(5)
+              else:
+                  raise AssertionError('New catalog did not reach the live site')
+              assert page.locator('#player-title').inner_text() == new_track['title']
+              assert page.locator('.track').nth(8).inner_text().find(new_track['title']) >= 0
+              for song in songs:
+                  page.goto(base+'#'+song['id'])
+                  page.wait_for_function("title => document.querySelector('#player-title')?.textContent === title", arg=song['title'])
+              page.goto(base+'#'+new_track['id'])
+              page.locator('#play').tap()
+              page.wait_for_function("audio.currentTime > 0.2 && !audio.paused")
+              live_url = page.locator('audio').evaluate('audio => audio.currentSrc')
+              with urlopen(live_url, timeout=30) as stream:
+                  assert hashlib.file_digest(stream, 'sha256').hexdigest() == 'e514925cad7d4fbb7a2e04d5e7f6c9517c9583e402658bf0dac1295c2bbd0176'
+              seek = page.locator('#seek')
+              seek.press('Home')
+              page.wait_for_function('audio.currentTime < 2')
+              seek.evaluate("(e) => {e.value=75; e.dispatchEvent(new Event('input'))}")
+              page.wait_for_function('audio.currentTime >= 74 && audio.currentTime < 80')
+              page.locator('#next').tap()
+              page.wait_for_function("audio.currentSrc.includes('reach-menta') && audio.currentTime > 0.2")
+              seek.evaluate("(e) => {e.value=120; e.dispatchEvent(new Event('input'))}")
+              page.wait_for_function('audio.currentTime >= 119 && audio.currentTime < 125')
+              page.locator('#previous').tap()
+              page.wait_for_function("audio.currentSrc.includes('ani-rak-zamar') && audio.currentTime > 0.2")
+              page.locator('audio').evaluate('audio => audio.currentTime = audio.duration - 0.6')
+              page.wait_for_function("audio.currentSrc.includes('reach-menta') && audio.currentTime > 0.2")
+              print('PASS: 10 direct links, original MP3 on Pages, playback, seeking in tracks 9 and 10, next, previous, and continuous playback.')
+          PY
