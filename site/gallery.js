@@ -19,7 +19,7 @@ let requested = 0;
 let rotating = !reducedMotion.matches;
 let timer;
 let touchStart;
-let lastSwipe = -Infinity;
+
 
 function wrap(index) {
   return (index + slides.length) % slides.length;
@@ -103,7 +103,6 @@ document.addEventListener("visibilitychange", scheduleRotation);
 
 stage.addEventListener("pointerdown", event => {
   if (event.pointerType === "touch" && event.target === openPortrait) {
-    lastSwipe = -Infinity;
     touchStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
   }
 });
@@ -113,26 +112,24 @@ stage.addEventListener("pointerup", event => {
   const y = event.clientY - touchStart.y;
   touchStart = undefined;
   if (Math.abs(x) > 42 && Math.abs(x) > Math.abs(y) * 1.3) {
-    lastSwipe = performance.now();
     selectPortrait(current + (x > 0 ? 1 : -1));
+  } else if (Math.hypot(x, y) < 12) {
+    showPortrait();
   }
 });
 stage.addEventListener("pointercancel", () => { touchStart = undefined; });
 
-openPortrait.addEventListener("click", () => {
-  if (performance.now() - lastSwipe < 350) return;
+function showPortrait() {
+  if (dialog.open) return;
   const image = imageFor(current);
   enlarged.src = image.currentSrc || image.src;
   enlarged.alt = image.alt;
   dialog.showModal();
   scheduleRotation();
-});
-dialog.addEventListener("click", event => {
-  if (event.target === dialog) {
-    const bounds = dialog.getBoundingClientRect();
-    if (event.clientX < bounds.left || event.clientX > bounds.right ||
-        event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
-  }
+}
+
+openPortrait.addEventListener("click", event => {
+  if (event.pointerType !== "touch") showPortrait();
 });
 dialog.addEventListener("close", scheduleRotation);
 
