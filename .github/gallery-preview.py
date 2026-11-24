@@ -3,8 +3,8 @@ from pathlib import Path
 from time import sleep
 from playwright.sync_api import sync_playwright, expect
 
-base = sys.argv[1]
 public = len(sys.argv) == 3
+base = sys.argv[1] + ('?v=portrait-gallery' if public else '')
 screens = Path('gallery-screenshots')
 screens.mkdir(exist_ok=True)
 
@@ -14,7 +14,7 @@ with sync_playwright() as pw:
     if public:
         for attempt in range(24):
             try:
-                desktop.goto(base+'#yesh-ir',timeout=10000)
+                desktop.goto(base+f'&check={attempt}#yesh-ir',timeout=10000)
                 expect(desktop.locator('.portrait-dot')).to_have_count(8,timeout=3500)
                 expect(desktop.locator('#track-count')).to_have_text('10 שירים',timeout=3500)
                 break
@@ -84,7 +84,8 @@ with sync_playwright() as pw:
         desktop.goto(base+'#ani-rak-zamar')
         expect(desktop.locator('#player-title')).to_have_text('אני רק זמר')
         expect(desktop.locator('#credits')).to_contain_text("ג'קי וול")
-        desktop.locator('.portrait-rotation').click()
+        if desktop.locator('.portrait-rotation').get_attribute('aria-label') == 'עצירת החלפה אוטומטית':
+            desktop.locator('.portrait-rotation').click()
         dots.nth(3).click()
         expect(dots.nth(3)).to_have_attribute('aria-current','true')
         desktop.screenshot(path=str(screens/'Moshe-Hillel-Gallery-Desktop.jpg'),quality=92,animations='disabled')
