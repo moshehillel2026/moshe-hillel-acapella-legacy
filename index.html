@@ -1,0 +1,5 @@
+---
+layout: null
+---
+{% capture player %}{% include_relative site/index.html %}{% endcapture %}
+{{ player | replace: '<head>', '<head><base href="./site/">' | replace: '/moshe-hillel-acapella-legacy/images/', '/moshe-hillel-acapella-legacy/site/images/' }}

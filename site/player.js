@@ -127,7 +127,7 @@ function select(index, start = false) {
   if (selected !== index) {
     resetAudio();
     selected = index;
-    history.replaceState(null, "", `#${encodeURIComponent(song.id)}`);
+    history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${encodeURIComponent(song.id)}`);
     byId("player-title").textContent = song.title;
     byId("artist").textContent = song.performer;
     status.textContent = song.audio ? "" : "ההקלטה ממתינה לשילוב באוסף.";
