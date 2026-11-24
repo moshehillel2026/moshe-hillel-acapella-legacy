@@ -306,7 +306,7 @@ if (mediaSession) {
 
 async function init() {
   try {
-    const response = await fetch("songs.json");
+    const response = await fetch("songs.json?v=20261124-lyrics", { cache: "no-cache" });
     if (!response.ok) throw new Error("Catalog unavailable");
     const data = await response.json();
     songs = [...data.songs].sort((a, b) => a.order - b.order);
