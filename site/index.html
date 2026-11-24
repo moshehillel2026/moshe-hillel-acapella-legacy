@@ -21,7 +21,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://moshehillel2026.github.io/moshe-hillel-acapella-legacy/images/moshe-hillel.jpg">
   <meta name="twitter:image:alt" content="דיוקן של משה הלל">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=portrait-gallery">
+  <script src="gallery.js?v=portrait-gallery" defer></script>
   <script src="player.js?v=20261124-lyrics" defer></script>
 </head>
 <body>
@@ -39,8 +40,27 @@
           <p class="dedication">יש קולות שלא נעלמים. הם ממשיכים ללוות אותנו בכל רגע.</p>
           <p class="family">באהבה לחי ולכל המשפחה.</p>
         </div>
-        <div class="portrait" id="portrait">
-          <img src="images/moshe-hillel.jpg" width="1260" height="1076" alt="דיוקן של משה הלל">
+        <div class="portrait-gallery" aria-label="אלבום תמונות של משה הלל" role="region">
+          <div class="portrait-stage">
+            <span class="portrait-slide is-current" id="portrait">
+              <img src="images/moshe-hillel.jpg" width="1260" height="1076" alt="משה הלל בצעירותו" fetchpriority="high" draggable="false">
+            </span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-01.webp" alt="משה הלל עומד" draggable="false"></span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-02.webp" alt="משה הלל ביד על הסנטר" draggable="false"></span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-03.webp" alt="משה הלל עם צעיף שחור" draggable="false"></span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-04.webp" alt="משה הלל מחייך" draggable="false"></span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-05.webp" alt="משה הלל בפורטרט חזיתי" draggable="false"></span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-06.webp" alt="משה הלל עם משקפיים" draggable="false"></span>
+            <span class="portrait-slide" aria-hidden="true"><img data-src="images/portraits/Moshe-Hillel-07.webp" alt="משה הלל מביט הצידה" draggable="false"></span>
+            <button type="button" class="portrait-open" aria-label="הגדלת התמונה" hidden></button>
+            <button type="button" class="portrait-arrow portrait-prev" aria-label="התמונה הקודמת" hidden><span aria-hidden="true">›</span></button>
+            <button type="button" class="portrait-arrow portrait-next" aria-label="התמונה הבאה" hidden><span aria-hidden="true">‹</span></button>
+          </div>
+          <div class="portrait-controls" hidden>
+            <div class="portrait-dots" role="group" aria-label="בחירת תמונה"></div>
+            <button type="button" class="portrait-rotation" aria-label="עצירת החלפה אוטומטית" title="עצירת החלפה אוטומטית"><span aria-hidden="true">Ⅱ</span></button>
+          </div>
+          <p class="portrait-announcement" role="status"></p>
         </div>
       </section>
       <div class="collection">
@@ -94,6 +114,10 @@
       <span>InMusic Studio</span>
       <p>ההאזנה משתמשת בחיבור לאינטרנט ובמטמון זמני של הדפדפן.</p>
     </footer>
+    <dialog class="portrait-dialog" aria-label="תמונה מוגדלת של משה הלל">
+      <form method="dialog"><button type="submit" class="quiet" autofocus>סגירה</button></form>
+      <img alt="">
+    </dialog>
     <dialog id="share-dialog" aria-labelledby="share-title">
       <form method="dialog">
         <h2 id="share-title">שיתוף קישור משפחתי</h2>
