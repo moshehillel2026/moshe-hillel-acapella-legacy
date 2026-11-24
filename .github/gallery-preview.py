@@ -101,7 +101,14 @@ with sync_playwright() as pw:
         mobile.wait_for_timeout(4100)
         expect(mdots.nth(0)).to_have_attribute('aria-current','true')
     assert mobile.evaluate('document.documentElement.scrollWidth === innerWidth')
-    assert mobile.locator('.player').bounding_box()['y'] < 660
+    geometry = mobile.evaluate("""() => ({
+        viewport: innerHeight,
+        player: document.querySelector('.player').getBoundingClientRect().top,
+        frame: document.querySelector('.portrait-stage').getBoundingClientRect().height,
+        play: document.querySelector('#play').getBoundingClientRect().bottom
+    })""")
+    print(f'Mobile geometry: {geometry}',flush=True)
+    assert geometry['player'] < geometry['viewport']*.86, geometry
     box=mobile.locator('.portrait-open').bounding_box()
     x=box['x']+box['width']*.34
     y=box['y']+box['height']*.56
