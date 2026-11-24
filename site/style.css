@@ -173,14 +173,15 @@ dialog::backdrop { background: #000a; }
 dialog input { display: block; width: 100%; margin-block: 14px; border: 1px solid var(--line); padding: 8px; color: var(--ink); background: var(--bg); }
 @media (max-width: 720px) {
   .frame { padding: 0 14px; }
-  .masthead { min-height: 65px; }
+  .masthead { min-height: 58px; }
   .hero { grid-template-columns: 1fr; min-height: 0; gap: 10px; padding: 14px; }
+  .hero-copy { font-size: .94rem; line-height: 1.4; }
   .hero-copy h1 { font-size: clamp(2.4rem, 9vw, 3.65rem); }
   .hero-copy .eyebrow { margin-block-end: 6px; }
-  .hero-copy .subtitle { margin-block-start: 12px; }
+  .hero-copy .subtitle { margin-block-start: 10px; font-size: 1rem; }
   .hero-copy .dedication { margin-block-start: 8px; }
   .portrait-gallery { grid-row: 1; margin-inline: auto; width: min(100%, 340px); }
   .portrait-stage { width: min(100%, 236px, max(178px, 30svh)); margin-inline: auto; }
-  .collection { grid-template-columns: 1fr; grid-template-areas: "player" "tracks" "lyrics"; gap: 14px; }
+  .collection { grid-template-columns: 1fr; grid-template-areas: "player" "tracks" "lyrics"; gap: 14px; margin-top: 16px; }
 }
 h1 .title-separator { display: inline; position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

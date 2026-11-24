@@ -103,6 +103,7 @@ document.addEventListener("visibilitychange", scheduleRotation);
 
 stage.addEventListener("pointerdown", event => {
   if (event.pointerType === "touch" && event.target === openPortrait) {
+    lastSwipe = -Infinity;
     touchStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
   }
 });
