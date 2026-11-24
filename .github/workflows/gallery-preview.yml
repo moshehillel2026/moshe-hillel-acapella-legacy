@@ -1,0 +1,23 @@
+name: Check portrait gallery on desktop and mobile
+on: [push]
+permissions:
+  contents: read
+jobs:
+  gallery:
+    if: github.ref == 'refs/heads/qa/portrait-gallery'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: pip install playwright
+      - name: Check layout and controls before deployment
+        run: |
+          python scripts/check-pages.py site audio-inventory.json
+          python -m http.server 8012 --directory site > /tmp/gallery-http.log 2>&1 &
+          python .github/gallery-preview.py http://127.0.0.1:8012/
+      - name: Verify public deployment and capture screenshots
+        run: python .github/gallery-preview.py https://moshehillel2026.github.io/moshe-hillel-acapella-legacy/ public
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portrait-gallery-screenshots
+          path: gallery-screenshots/*.jpg
+          retention-days: 5
