@@ -1,0 +1,32 @@
+name: Verify live mobile playback
+on: [push]
+permissions:
+  contents: read
+jobs:
+  player:
+    if: github.ref == 'refs/heads/qa/ninth-recording-mobile'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: pip install playwright
+      - shell: bash
+        run: |
+          python - https://moshehillel2026.github.io/moshe-hillel-acapella-legacy/ <<'PY'
+          import sys,json
+          from playwright.sync_api import sync_playwright
+          base=sys.argv[1]; songs=json.load(open('site/songs.json'))['songs']
+          with sync_playwright() as w:
+           b=w.chromium.launch(executable_path='/usr/bin/google-chrome',args=['--no-sandbox'])
+           p=b.new_page(**w.devices['Pixel 7'],ignore_https_errors=True);p.set_default_timeout(22000)
+           p.goto(base+'#'+songs[4]['id']);p.wait_for_function("document.querySelector('#track-count').textContent.includes('9')")
+           for s in songs:
+            p.evaluate('id=>location.hash=id',s['id']);p.wait_for_function("t=>document.querySelector('#player-title').textContent===t",arg=s['title'])
+           p.locator('.track').nth(4).tap();p.locator('#play').tap()
+           p.wait_for_function('audio.currentTime>0.2 && !audio.paused')
+           p.locator('#seek').evaluate("(e)=>{e.value=120;e.dispatchEvent(new Event('input'))}")
+           p.wait_for_function('audio.currentTime>=119 && audio.currentTime<125')
+           p.locator('#next').tap();p.wait_for_function("audio.currentSrc.includes('shabbat') && audio.currentTime>0.1")
+           p.locator('#previous').tap();p.wait_for_function("audio.currentSrc.includes('ahava') && audio.currentTime>0.1")
+           p.evaluate('audio.currentTime=audio.duration-0.6');p.wait_for_function("audio.currentSrc.includes('shabbat') && audio.currentTime>0.1")
+           print('PASS',base,'nine deep links, count, playback, seek, next, previous, continuous')
+          PY
