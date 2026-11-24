@@ -8,6 +8,12 @@ on:
       - "audio-inventory.json"
       - "scripts/check-pages.py"
       - ".github/workflows/pages.yml"
+  # Branch-based Pages can also publish the repository root. Restore the
+  # validated player after that deployment finishes.
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
