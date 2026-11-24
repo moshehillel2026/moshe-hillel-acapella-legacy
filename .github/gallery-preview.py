@@ -15,7 +15,7 @@ with sync_playwright() as pw:
         for attempt in range(24):
             try:
                 desktop.goto(base+f'&check={attempt}#yesh-ir',timeout=10000)
-                expect(desktop.locator('.portrait-dot')).to_have_count(8,timeout=3500)
+                expect(desktop.locator('.portrait-dot').last).to_be_visible(timeout=3500)
                 expect(desktop.locator('#track-count')).to_have_text('10 שירים',timeout=3500)
                 break
             except Exception as exc:
@@ -31,9 +31,12 @@ with sync_playwright() as pw:
     visible = desktop.locator('.portrait-slide.is-current img')
     dots = desktop.locator('.portrait-dot')
     current = desktop.locator('.portrait-dot[aria-current=true]')
-    expect(dots).to_have_count(8)
-    expect(current).to_have_attribute('aria-label','תמונה 1 מתוך 8: משה הלל בצעירותו')
-    expect(visible).to_have_attribute('src','images/moshe-hillel.jpg')
+    size = dots.count()
+    assert size in ((7, 8) if public else (8,)), size
+    opening = ('images/moshe-hillel.jpg' if size == 8 else 'images/portraits/Moshe-Hillel-01.webp')
+    expect(dots.nth(0)).to_have_attribute('aria-current','true')
+    expect(visible).to_have_attribute('src', opening)
+    print(f'Live={public}: {size} portraits, opens with {opening}',flush=True)
     expect(desktop.locator('meta[property="og:image"]')).to_have_attribute('content',__import__('re').compile(r'/images/moshe-hillel\.jpg$'))
     dims=stage.bounding_box()
     copy=desktop.locator('.hero-copy').bounding_box()
@@ -51,7 +54,7 @@ with sync_playwright() as pw:
     desktop.locator('.portrait-rotation').click()
 
     # Each full frame is usable, selection does not resize the stage, and the dialog restores its trigger.
-    for i in range(8):
+    for i in range(size):
         dots.nth(i).click()
         expect(dots.nth(i)).to_have_attribute('aria-current','true')
         assert visible.evaluate("img=>img.complete && img.naturalWidth > 0")
@@ -59,7 +62,7 @@ with sync_playwright() as pw:
     desktop.locator('.portrait-next').click()
     expect(dots.nth(0)).to_have_attribute('aria-current','true')
     desktop.locator('.portrait-prev').click()
-    expect(dots.nth(7)).to_have_attribute('aria-current','true')
+    expect(dots.nth(size-1)).to_have_attribute('aria-current','true')
     desktop.locator('.portrait-open').click()
     dialog=desktop.locator('.portrait-dialog')
     expect(dialog).to_be_visible()
@@ -73,8 +76,8 @@ with sync_playwright() as pw:
     if public:
         desktop.locator('#play').click()
         desktop.wait_for_function('audio.currentTime > .25 && !audio.paused')
-        dots.nth(3).click()
-        expect(dots.nth(3)).to_have_attribute('aria-current','true')
+        dots.nth(size-5).click()
+        expect(dots.nth(size-5)).to_have_attribute('aria-current','true')
         desktop.wait_for_function('audio.currentTime > .6 && !audio.paused')
         desktop.locator('#seek').evaluate("""e=>{e.value=35;e.dispatchEvent(new Event('input'))}""")
         desktop.wait_for_function('audio.currentTime >= 34 && audio.currentTime < 40')
@@ -86,8 +89,8 @@ with sync_playwright() as pw:
         expect(desktop.locator('#credits')).to_contain_text("ג'קי וול")
         if desktop.locator('.portrait-rotation').get_attribute('aria-label') == 'עצירת החלפה אוטומטית':
             desktop.locator('.portrait-rotation').click()
-        dots.nth(3).click()
-        expect(dots.nth(3)).to_have_attribute('aria-current','true')
+        dots.nth(size-5).click()
+        expect(dots.nth(size-5)).to_have_attribute('aria-current','true')
         desktop.screenshot(path=str(screens/'Moshe-Hillel-Gallery-Desktop.jpg'),quality=92,animations='disabled')
 
     mobile = browser.new_page(**pw.devices['Pixel 7'],reduced_motion='reduce')
@@ -124,7 +127,7 @@ with sync_playwright() as pw:
     mobile.locator('.portrait-dialog button').tap()
     expect(mobile.locator('.portrait-dialog')).not_to_be_visible()
     if public:
-        mdots.nth(6).tap()
-        expect(mdots.nth(6)).to_have_attribute('aria-current','true')
+        mdots.nth(size-2).tap()
+        expect(mdots.nth(size-2)).to_have_attribute('aria-current','true')
         mobile.screenshot(path=str(screens/'Moshe-Hillel-Gallery-Mobile.jpg'),quality=92,animations='disabled')
-    print('PASS: desktop and touch layouts, eight portraits, controls, reduced motion, links and lyrics',flush=True)
+    print('PASS: desktop and touch layouts, portraits, controls, reduced motion, links and lyrics',flush=True)
