@@ -180,7 +180,7 @@ dialog input { display: block; width: 100%; margin-block: 14px; border: 1px soli
   .hero-copy .subtitle { margin-block-start: 12px; }
   .hero-copy .dedication { margin-block-start: 8px; }
   .portrait-gallery { grid-row: 1; margin-inline: auto; width: min(100%, 340px); }
-  .portrait-stage { width: min(100%, 265px, max(200px, 34svh)); margin-inline: auto; }
+  .portrait-stage { width: min(100%, 236px, max(178px, 30svh)); margin-inline: auto; }
   .collection { grid-template-columns: 1fr; grid-template-areas: "player" "tracks" "lyrics"; gap: 14px; }
 }
 h1 .title-separator { display: inline; position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
