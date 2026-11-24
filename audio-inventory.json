@@ -44,6 +44,17 @@
     "sha256": "51948f53a4b1789a914161d60e61531cc574b639d4a1c8824578dc0b9c6399dd"
   },
   {
+    "source": "אהבה בעשן - שיח ורדים.mp3",
+    "path": "media/ahava-beashan-siach-vradim.mp3",
+    "duration": 244.608,
+    "bytes": 7616589,
+    "format": "mp3",
+    "bitrate": 249103,
+    "sampleRate": 48000,
+    "channels": 2,
+    "sha256": "802f087719541853c32486edb5bf8d796f0c9351a245d93930888a5484cd64be"
+  },
+  {
     "source": "שיר שבת MP3.mp3",
     "path": "media/shabbat.mp3",
     "duration": 237.168,

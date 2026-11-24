@@ -303,8 +303,27 @@
       }
     },
     {
-      "id": "shabbat",
+      "id": "ahava-beashan-siach-vradim",
       "order": 5,
+      "title": "אהבה בעשן – שיח ורדים",
+      "performer": "משה הלל",
+      "lyricist": null,
+      "composer": null,
+      "creditsStatus": "pending",
+      "audio": "media/ahava-beashan-siach-vradim.mp3",
+      "duration": 244.608,
+      "cover": null,
+      "lyrics": {
+        "source": null,
+        "status": "pending",
+        "note": "מילות השיר ופרטי היוצרים ממתינים להשלמה.",
+        "sections": [],
+        "cues": []
+      }
+    },
+    {
+      "id": "shabbat",
+      "order": 6,
       "title": "שיר שבת",
       "performer": "משה הלל",
       "lyricist": "בועז שרעבי",
@@ -406,7 +425,7 @@
     },
     {
       "id": "chag-li",
-      "order": 6,
+      "order": 7,
       "title": "חג לי",
       "performer": "משה הלל",
       "lyricist": "אביהו מדינה",
@@ -476,7 +495,7 @@
     },
     {
       "id": "matador",
-      "order": 7,
+      "order": 8,
       "title": "מטאדור",
       "performer": "משה הלל",
       "lyricist": "אורי ברזילי",
@@ -547,7 +566,7 @@
     },
     {
       "id": "reach-menta",
-      "order": 8,
+      "order": 9,
       "title": "ריח מנטה – הופעה חיה",
       "performer": "משה הלל",
       "lyricist": null,
