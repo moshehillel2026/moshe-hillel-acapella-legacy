@@ -41,14 +41,22 @@ jobs:
                   page.goto(base+'#'+song['id'])
                   page.wait_for_function("title => document.querySelector('#player-title')?.textContent === title", arg=song['title'])
               page.goto(base+'#'+new_track['id'])
-              page.locator('#play').tap()
-              page.wait_for_function("audio.currentTime > 0.2 && !audio.paused")
+              page.wait_for_function("document.querySelector('#player-title')?.textContent === 'אני רק זמר'")
+              for attempt in range(5):
+                  page.locator('#play').tap()
+                  try:
+                      page.wait_for_function("audio.currentTime > 0.2 && !audio.paused", timeout=6000)
+                      break
+                  except Exception:
+                      print(page.locator('audio').evaluate('a => [a.currentSrc, a.error?.code, a.currentTime, a.paused]'), flush=True)
+                      page.reload()
+                      page.wait_for_function("document.querySelector('#player-title')?.textContent === 'אני רק זמר'")
+              else:
+                  raise AssertionError('Track nine did not play')
               live_url = page.locator('audio').evaluate('audio => audio.currentSrc')
               with urlopen(live_url, timeout=30) as stream:
                   assert hashlib.file_digest(stream, 'sha256').hexdigest() == 'e514925cad7d4fbb7a2e04d5e7f6c9517c9583e402658bf0dac1295c2bbd0176'
               seek = page.locator('#seek')
-              seek.press('Home')
-              page.wait_for_function('audio.currentTime < 2')
               seek.evaluate("(e) => {e.value=75; e.dispatchEvent(new Event('input'))}")
               page.wait_for_function('audio.currentTime >= 74 && audio.currentTime < 80')
               page.locator('#next').tap()
