@@ -1,0 +1,38 @@
+name: Verify live track five lyrics
+on: [push]
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/qa/ahava-beashan-lyrics'
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install playwright
+      - shell: bash
+        run: |
+          python - <<'PY'
+          from time import sleep
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as pw:
+              browser = pw.chromium.launch(executable_path='/usr/bin/google-chrome')
+              page = browser.new_page(**pw.devices['Pixel 7'])
+              url = 'https://moshehillel2026.github.io/moshe-hillel-acapella-legacy/#ahava-beashan-siach-vradim'
+              for attempt in range(24):
+                  try:
+                      page.goto(url, timeout=12000)
+                      page.locator('#player-title').get_by_text('אהבה בעשן – שיח ורדים', exact=True).wait_for(timeout=3500)
+                      page.locator('#jump-lyrics').click()
+                      page.locator('#lyrics p').first.wait_for(timeout=3500)
+                      assert page.locator('#lyrics p').count() == 30
+                      assert page.locator('#lyrics p').first.inner_text() == 'שיח ורדים ועצי תאנה'
+                      credits = page.locator('#credits').inner_text()
+                      assert 'רות חשמן' in credits and 'ישראל שלום' in credits
+                      assert page.locator('#track-count').inner_text() == '10 שירים'
+                      print('PASS: track five loads directly, shows 30 lyric lines and both credits, and the catalog has ten tracks')
+                      break
+                  except Exception as error:
+                      print(error, flush=True)
+                      sleep(10)
+              else:
+                  raise AssertionError('The updated lyrics did not appear on the public site')
+          PY
